@@ -424,6 +424,28 @@ def parse_args(args):
         default=None,
         help='Which pre-trained weights to distill from, if any.'
     )
+
+    parser.add_argument(
+        "--with_gradient_surgery",
+        default=False,
+        action="store_true",
+        help="If true, train with gradient surgery."
+    )
+
+    parser.add_argument(
+        "--grad_t",
+        type=float,
+        default=1.0,
+        help="Weight of custom gradient. Default 1.0"
+    )
+
+    parser.add_argument(
+        "--gap_t",
+        type=float,
+        default=0.1,
+        help="Weight of gap direction in custom gradient. Default 0.1"
+    )
+
     args = parser.parse_args(args)
 
     # If some params are not passed, we use the default values based on model name.
